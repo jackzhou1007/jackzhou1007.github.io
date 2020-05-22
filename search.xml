@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>Windows Server定时备份文件到共享文件夹</title>
+      <link href="/2020/05/22/Windows-Server-backup-share/"/>
+      <url>/2020/05/22/Windows-Server-backup-share/</url>
+      
+        <content type="html"><![CDATA[<p>公司要求每天备份系统数据到异地存储归档，想了个最简单的办法，服务器在A地，备份服务器在B地，设置定时计划任务每天将数据拷贝到B地服务器的共享文件夹内即可。</p><p>首先开启B地备份服务器共享文件夹功能；</p><p>在A服务器上创建B服务器共享文件夹快捷方式；</p><p>写一个拷贝文件的批处理脚本</p><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> 正在拷贝备份文件夹到备份服务器，请稍等</span><br><span class="line"></span><br><span class="line"><span class="built_in">xcopy</span> F:\数据文件夹\数据文件.rar \\B服务器IP\数据文件夹\</span><br><span class="line"></span><br><span class="line"><span class="keyword">exit</span></span><br></pre></td></tr></table></figure><p>在A服务器上创建一个定时计划任务；</p><p>任务计划程序-创建基本任务</p><p>把执行时间写进去</p><p>操作是执行刚才写的脚本</p><p>完成即可</p><p>这是一个最简单的脚本，根据实际情况不同可能会有每天备份的文件名不一样等等。更深层的东西可以联系我或者学习一下Dos命令。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Windows </tag>
+            
+            <tag> 服务器 </tag>
+            
+            <tag> 备份 </tag>
+            
+            <tag> 共享 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Zabbix全版本(1-5)超简单零失误安装教程</title>
+      <link href="/2020/05/21/zabbix5-quick-install/"/>
+      <url>/2020/05/21/zabbix5-quick-install/</url>
+      
+        <content type="html"><![CDATA[<p>这次我们打破常规安装方法，直接打包系统一起安装，不用繁琐配置环境导致安装失败。</p><p>首先打开<a href="https://www.zabbix.com/cn/download_appliance" target="_blank" rel="noopener">Zabbix官方网站下载页面</a></p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/05/21/zabbix5-quick-install/1.jpg" alt></p><p>下面选择下载的版本和系统格式：我使用虚拟机+zabbix5版本</p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/05/21/zabbix5-quick-install/2.jpg" alt></p><p>下载成功后直接导入到虚拟机里面，如果是ISO镜像就需要通过U盘安装到你的物理机上面，其他以此类推。</p><p>开启虚拟机，默认账号 root，密码zabbix，配置虚拟机IP</p><p>默认zabbix系统账号密码：Admin，zabbix</p><p>数据库密码随机生成：/root/.my.cnf 在这个文件中查看</p><p>要更改数据库用户密码，必须在以下位置进行更改：</p><ul><li>MySQL;</li><li>/etc/zabbix/zabbix_server.conf;</li><li>/etc/zabbix/web/zabbix.conf.php.</li></ul><p>如果要修改时区，<strong>/etc/php-fpm.d/zabbix.conf</strong> 在这个配置文件中修改</p><p>至此完成安装。</p><p>进入系统后会发现中文选项是灰色的，因为Centos系统没有安装中文包</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> yum install kde-l10n-Chinese</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> yum reinstall glibc-common</span></span><br></pre></td></tr></table></figure><p>安装即可。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Zabbix </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Zabbix </tag>
+            
+            <tag> 安装 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hexo4.2图片显示问题，修复hexo-asset-image</title>
+      <link href="/2020/05/15/hexo4-2-hexo-asset-image-bugfix/"/>
+      <url>/2020/05/15/hexo4-2-hexo-asset-image-bugfix/</url>
+      
+        <content type="html"><![CDATA[<p>首先我们需要安装一个图片路径转换的插件，这个插件名字是hexo-asset-image</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install https:&#x2F;&#x2F;github.com&#x2F;CodeFalling&#x2F;hexo-asset-image --save</span><br></pre></td></tr></table></figure><p>但是这个插件的内容需要修改【不然可能会出Bug】</p><p>打开/node_modules/hexo-asset-image/index.js，将内容更换为下面的代码</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"><span class="keyword">var</span> cheerio = <span class="built_in">require</span>(<span class="string">'cheerio'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// http://stackoverflow.com/questions/14480345/how-to-get-the-nth-occurrence-in-a-string</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getPosition</span>(<span class="params">str, m, i</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> str.split(m, i).join(m).length;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> version = <span class="built_in">String</span>(hexo.version).split(<span class="string">'.'</span>);</span><br><span class="line">hexo.extend.filter.register(<span class="string">'after_post_render'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> config = hexo.config;</span><br><span class="line">  <span class="keyword">if</span>(config.post_asset_folder)&#123;</span><br><span class="line">    <span class="keyword">var</span> link = data.permalink;</span><br><span class="line"><span class="keyword">if</span>(version.length &gt; <span class="number">0</span> &amp;&amp; <span class="built_in">Number</span>(version[<span class="number">0</span>]) == <span class="number">3</span>)</span><br><span class="line">   <span class="keyword">var</span> beginPos = getPosition(link, <span class="string">'/'</span>, <span class="number">1</span>) + <span class="number">1</span>;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">   <span class="keyword">var</span> beginPos = getPosition(link, <span class="string">'/'</span>, <span class="number">3</span>) + <span class="number">1</span>;</span><br><span class="line"><span class="comment">// In hexo 3.1.1, the permalink of "about" page is like ".../about/index.html".</span></span><br><span class="line"><span class="keyword">var</span> endPos = link.lastIndexOf(<span class="string">'/'</span>) + <span class="number">1</span>;</span><br><span class="line">    link = link.substring(beginPos, endPos);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> toprocess = [<span class="string">'excerpt'</span>, <span class="string">'more'</span>, <span class="string">'content'</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; toprocess.length; i++)&#123;</span><br><span class="line">      <span class="keyword">var</span> key = toprocess[i];</span><br><span class="line"> </span><br><span class="line">      <span class="keyword">var</span> $ = cheerio.load(data[key], &#123;</span><br><span class="line">        ignoreWhitespace: <span class="literal">false</span>,</span><br><span class="line">        xmlMode: <span class="literal">false</span>,</span><br><span class="line">        lowerCaseTags: <span class="literal">false</span>,</span><br><span class="line">        decodeEntities: <span class="literal">false</span></span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">      $(<span class="string">'img'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">if</span> ($(<span class="keyword">this</span>).attr(<span class="string">'src'</span>))&#123;</span><br><span class="line"><span class="comment">// For windows style path, we replace '\' to '/'.</span></span><br><span class="line"><span class="keyword">var</span> src = $(<span class="keyword">this</span>).attr(<span class="string">'src'</span>).replace(<span class="string">'\\'</span>, <span class="string">'/'</span>);</span><br><span class="line"><span class="keyword">if</span>(!<span class="regexp">/http[s]*.*|\/\/.*/</span>.test(src) &amp;&amp;</span><br><span class="line">   !<span class="regexp">/^\s*\//</span>.test(src)) &#123;</span><br><span class="line">  <span class="comment">// For "about" page, the first part of "src" can't be removed.</span></span><br><span class="line">  <span class="comment">// In addition, to support multi-level local directory.</span></span><br><span class="line">  <span class="keyword">var</span> linkArray = link.split(<span class="string">'/'</span>).filter(<span class="function"><span class="keyword">function</span>(<span class="params">elem</span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> elem != <span class="string">''</span>;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">var</span> srcArray = src.split(<span class="string">'/'</span>).filter(<span class="function"><span class="keyword">function</span>(<span class="params">elem</span>)</span>&#123;</span><br><span class="line"><span class="keyword">return</span> elem != <span class="string">''</span> &amp;&amp; elem != <span class="string">'.'</span>;</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">if</span>(srcArray.length &gt; <span class="number">1</span>)</span><br><span class="line">srcArray.shift();</span><br><span class="line">  src = srcArray.join(<span class="string">'/'</span>);</span><br><span class="line">  $(<span class="keyword">this</span>).attr(<span class="string">'src'</span>, config.root + link + src);</span><br><span class="line">  <span class="built_in">console</span>.info&amp;&amp;<span class="built_in">console</span>.info(<span class="string">"update link as:--&gt;"</span>+config.root + link + src);</span><br><span class="line">&#125;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"><span class="built_in">console</span>.info&amp;&amp;<span class="built_in">console</span>.info(<span class="string">"no src attr, skipped..."</span>);</span><br><span class="line"><span class="built_in">console</span>.info&amp;&amp;<span class="built_in">console</span>.info($(<span class="keyword">this</span>));</span><br><span class="line">&#125;</span><br><span class="line">      &#125;);</span><br><span class="line">      data[key] = $.html();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>打开_config.yml文件，修改下述内容</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> hexo-asset-image </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Centos7和Zabbix5.0监控安装记录</title>
+      <link href="/2020/05/14/Centos7-Zabbix5-install/"/>
+      <url>/2020/05/14/Centos7-Zabbix5-install/</url>
+      
+        <content type="html"><![CDATA[<p>首先在虚拟机上把Centos7安装完毕并关闭防火墙与SElinux。</p><p>打开<a href="https://www.zabbix.com/cn/download?zabbix=5.0&os_distribution=centos&os_version=7&db=mysql&ws=apache" target="_blank" rel="noopener">Zabbix官网</a>选择Zabbix版本-OS系统-OS版本-数据库-WebServer</p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/05/14/Centos7-Zabbix5-install/1.jpg" alt="打开Zabbix官网选择Zabbix版本-OS系统-OS版本-数据库-WebServer"></p><p>替换阿里云Zabbix源</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">echo -e "请给出要安装的zabbix版本号，建议使用4.x的版本  \033[31musage：./zabbix_aliyun.sh 4.0|4.4|4.5|5.0 \033[0m"</span><br><span class="line">echo "例如要安装4.4版本，在命令行写上 ./zabbix_aliyun.sh 4.4"</span><br><span class="line">if [ -z $1 ];then</span><br><span class="line">    exit</span><br><span class="line">fi</span><br><span class="line">VERSION=$1</span><br><span class="line">if [ -f /etc/yum.repos.d/zabbix.repo ];then</span><br><span class="line">    rm -rf /etc/repos.d/zabbix.repo</span><br><span class="line">fi</span><br><span class="line">rpm -qa | grep zabbix-release &amp;&amp; rpm -e zabbix-release</span><br><span class="line">rpm -Uvh https://mirrors.aliyun.com/zabbix/zabbix/$VERSION/rhel/7/x86_64/zabbix-release-$VERSION-1.el7.noarch.rpm</span><br><span class="line">sed -i "s@zabbix/.*/rhel@zabbix/$VERSION/rhel@g" /etc/yum.repos.d/zabbix.repo</span><br><span class="line">sed -i 's@repo.zabbix.com@mirrors.aliyun.com/zabbix@g' /etc/yum.repos.d/zabbix.repo</span><br><span class="line">[ $? -eq 0 ] &amp;&amp; echo "阿里云的zabbix源替换成功" || exit 1</span><br><span class="line">yum clean all</span><br><span class="line">yum makecache fast</span><br></pre></td></tr></table></figure><p>前期准备</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> rpm -Uvh https://repo.zabbix.com/zabbix/5.0/rhel/7/x86_64/zabbix-release-5.0-1.el7.noarch.rpm</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> yum clean all</span></span><br></pre></td></tr></table></figure><p>安装Zabbix server 和 agent</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> yum install zabbix-server-mysql zabbix-agent</span></span><br></pre></td></tr></table></figure><p>安装Zabbix frontend</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> yum install centos-release-scl</span></span><br></pre></td></tr></table></figure><p>编辑配置文件 /etc/yum.repos.d/zabbix.repo</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> vim /etc/yum.repos.d/zabbix.repo</span></span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[zabbix-frontend]</span><br><span class="line">...</span><br><span class="line">enabled&#x3D;1</span><br><span class="line">...</span><br></pre></td></tr></table></figure><p>安装 Zabbix frontend packages</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> yum install zabbix-web-mysql-scl zabbix-apache-conf-scl</span></span><br></pre></td></tr></table></figure><p>安装Mysql数据库</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># cd &#x2F;usr&#x2F;local&#x2F;src&#x2F;</span><br><span class="line"># wget http:&#x2F;&#x2F;repo.mysql.com&#x2F;mysql57-community-release-el7-8.noarch.rpm </span><br><span class="line"> rpm -ivh mysql57-community-release-el7-8.noarch.rpm</span><br><span class="line"># yum -y install mysql-server</span><br></pre></td></tr></table></figure><p>一路 Y</p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/05/14/Centos7-Zabbix5-install/2.jpg" alt="mysql安装完成"></p><p>启动Mysql</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> service mysqld start</span></span><br></pre></td></tr></table></figure><p>获取安装时的临时密码</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> grep <span class="string">'temporary password'</span> /var/<span class="built_in">log</span>/mysqld.log</span></span><br></pre></td></tr></table></figure><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/05/14/Centos7-Zabbix5-install/3.jpg" alt="获取密码"></p><p>dDll!Yzll49U 就是临时密码 用这个密码登录并修改密码</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># mysql -uroot -p</span><br><span class="line">password</span><br><span class="line">mysql&gt; set password for root@localhost &#x3D; password(&#39;123&#39;);</span><br></pre></td></tr></table></figure><p>创建初始数据库</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create database zabbix character set utf8 collate utf8_bin;</span><br><span class="line">mysql&gt; grant all privileges on zabbix.* to zabbix@localhost identified by &#39;password&#39;;</span><br><span class="line">mysql&gt; quit;</span><br></pre></td></tr></table></figure><p>导入初始架构和数据，系统将提示您输入新创建的密码</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | mysql -uzabbix -p zabbix</span></span><br></pre></td></tr></table></figure><p>为Zabbix server配置数据库<br>编辑配置文件 /etc/zabbix/zabbix_server.conf</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> vim /etc/zabbix/zabbix_server.conf</span></span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DBPassword&#x3D;password</span><br></pre></td></tr></table></figure><p>为Zabbix前端配置PHP<br>编辑配置文件 /etc/opt/rh/rh-php72/php-fpm.d/zabbix.conf</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> vim /etc/opt/rh/rh-php72/php-fpm.d/zabbix.conf</span></span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php_value[date.timezone] &#x3D; Asia&#x2F;Shanghai</span><br></pre></td></tr></table></figure><p>启动Zabbix server和agent进程<br>启动Zabbix server和agent进程，并为它们设置开机自启</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> systemctl restart zabbix-server zabbix-agent httpd rh-php72-php-fpm</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> systemctl <span class="built_in">enable</span> zabbix-server zabbix-agent httpd rh-php72-php-fpm</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Zabbix </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Centos </tag>
+            
+            <tag> Zabbix </tag>
+            
+            <tag> 安装 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>彩蝶GMP客户端的安装与配置</title>
+      <link href="/2020/04/30/IBM-GMP-Install/"/>
+      <url>/2020/04/30/IBM-GMP-Install/</url>
+      
+        <content type="html"><![CDATA[<p>彩蝶GMP客户端的安装与配置</p><hr><ol><li><p>首先将IBM文件夹拷贝到电脑D盘根目录下</p></li><li><p>打开D:\IBM\IBM_Notes_Client_9.0.1_SC_WINDOWS.exe文件</p></li><li><p>选择第一个选项，下一步</p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/04/30/IBM-GMP-Install/1.jpg" alt></p></li><li><p>下一步</p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/04/30/IBM-GMP-Install/2.jpg" alt></p></li><li><p>接受许可条件，下一步</p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/04/30/IBM-GMP-Install/3.jpg" alt></p></li><li><p>安装文件到D盘IBM文件夹，下一步</p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/04/30/IBM-GMP-Install/4.jpg" alt></p></li><li><p>不要做任何更改，下一步</p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/04/30/IBM-GMP-Install/5.jpg" alt></p></li><li><p>不要做任何更改，下一步</p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/04/30/IBM-GMP-Install/6.jpg" alt></p></li><li><p>安装完成</p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/04/30/IBM-GMP-Install/7.jpg" alt></p></li><li><p>回到电脑桌面，打开程序，开始配置</p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/04/30/IBM-GMP-Install/8.jpg" alt></p></li><li><p>下一步</p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/04/30/IBM-GMP-Install/9.jpg" alt></p></li><li><p>输入姓名和服务器地址</p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/04/30/IBM-GMP-Install/10.jpg" alt></p></li><li><p>导入用户id文件</p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/04/30/IBM-GMP-Install/11.jpg" alt></p></li><li><p>将文件拷贝到数据目录</p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/04/30/IBM-GMP-Install/12.jpg" alt></p></li><li><p>输入用户密码</p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/04/30/IBM-GMP-Install/13.jpg" alt></p></li><li><p>进入程序以后，打开应用程序</p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/04/30/IBM-GMP-Install/14.jpg" alt></p></li><li><p>输入服务器IP地址，选择文件</p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/04/30/IBM-GMP-Install/15.jpg" alt></p></li><li><p>信任文件，点击确定</p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/04/30/IBM-GMP-Install/16.jpg" alt></p></li><li><p>创建书签，设置主页</p></li></ol>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 彩蝶 </tag>
+            
+            <tag> IBM </tag>
+            
+            <tag> GMP </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>windows服务器安全加固记录</title>
+      <link href="/2020/04/27/Windows-security-enhancements/"/>
+      <url>/2020/04/27/Windows-security-enhancements/</url>
+      
+        <content type="html"><![CDATA[<h2 id="windows服务器安全加固记录"><a href="#windows服务器安全加固记录" class="headerlink" title="windows服务器安全加固记录"></a>windows服务器安全加固记录</h2><p>公司有windows server 2012服务器一台，常年处于裸奔状态。</p><h3 id="服务器现状"><a href="#服务器现状" class="headerlink" title="服务器现状"></a>服务器现状</h3><ol><li>服务器连接公网（不知道啥原因不能断）</li><li>防火墙关闭状态</li><li>未打过任何补丁</li><li>跑着业务软件</li></ol><p>对于攻击者来说是一只很香的肉鸡了。</p><hr><h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><ol><li><p>检查业务软件的端口</p><p>运行CMD - 在窗口中输入”netstat -a -n”</p><p>找到业务端口后添加到防火墙规则中</p></li><li><p>开启防火墙清理无用规则</p><p>关闭不必要的端口</p><p>添加关闭135、137、138、139、445端口规则，防止永恒之蓝漏洞</p></li><li><p>开启自动更新，定期安装最新补丁</p></li><li><p>密码定期修改，网上有个密码生成器，可以生成超复杂的随机密码，估计爆破不出来的。</p></li></ol>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Windows </tag>
+            
+            <tag> 服务器 </tag>
+            
+            <tag> 安全 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
