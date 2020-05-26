@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: 
+Sitemap: https://null6.cn/sitemap.xml
