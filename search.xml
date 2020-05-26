@@ -4,6 +4,29 @@
   
     
     <entry>
+      <title>FreeFileSync多平台免费文件同步工具</title>
+      <link href="/2020/05/26/FreeFileSync-tool/"/>
+      <url>/2020/05/26/FreeFileSync-tool/</url>
+      
+        <content type="html"><![CDATA[<p>FreeFileSync是用于文件同步的免费开源程序。它在Windows，Linux和OS X上都可以使用。</p><p>本次需求：</p><ul><li>让A服务器与B服务器硬盘文件同步</li></ul><p>现有条件：</p><ul><li>A，B两台Windows服务器</li><li>网络互通</li></ul><p>实现方法：</p><ol><li><p>打开FreeFileSync软件官网 <a href="https://freefilesync.org/download.php" target="_blank" rel="noopener">https://freefilesync.org/download.php</a> 下载最新版</p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/05/26/FreeFileSync-tool/1.jpg" alt="打开FreeFileSync软件官网 https://freefilesync.org/download.php 下载最新版"></p></li><li><p>安装软件，接受协议狂点下一步，直至安装完成</p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/05/26/FreeFileSync-tool/2.jpg" alt="安装软件，接受协议狂点下一步，直至安装完成"></p></li><li><p>在桌面出现两个图标，一个绿色的一个红色的，我们先打开绿色的</p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/05/26/FreeFileSync-tool/3.jpg" alt="在桌面出现两个图标，一个绿色的一个红色的，我们先打开绿色的"></p></li><li><p>先在A服务器上做了一个B服务器的文件共享，然后配置软件</p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/05/26/FreeFileSync-tool/4-1.jpg" alt="先在A服务器上做了一个B服务器的文件共享，然后配置软件"></p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/05/26/FreeFileSync-tool/4-2.jpg" alt="先在A服务器上做了一个B服务器的文件共享，然后配置软件"></p></li><li><p>点击 文件 - 另存为批处理作业</p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/05/26/FreeFileSync-tool/5.jpg" alt="点击 文件 - 另存为批处理作业"></p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/05/26/FreeFileSync-tool/5-2.jpg" alt="点击 文件 - 另存为批处理作业"></p></li><li><p>打开桌面红色图标的软件，打开刚才保持的配置文件，点击开始就会自动监控并同步两台服务器的数据</p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/05/26/FreeFileSync-tool/6-1.jpg" alt="打开桌面红色图标的软件，打开刚才保持的配置文件，点击开始就会自动监控并同步两台服务器的数据"></p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/05/26/FreeFileSync-tool/6-2.jpg" alt="打开桌面红色图标的软件，打开刚才保持的配置文件，点击开始就会自动监控并同步两台服务器的数据"></p></li><li><p>同步方式也可以改为镜像、更新和自定义，更多操作请查阅官方文档 <a href="https://freefilesync.org/" target="_blank" rel="noopener">https://freefilesync.org/</a></p></li></ol>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 免费 </tag>
+            
+            <tag> 同步 </tag>
+            
+            <tag> FreeFileSync </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Windows Server定时备份文件到共享文件夹</title>
       <link href="/2020/05/22/Windows-Server-backup-share/"/>
       <url>/2020/05/22/Windows-Server-backup-share/</url>
