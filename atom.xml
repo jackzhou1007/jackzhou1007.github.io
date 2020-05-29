@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://null6.cn/"/>
-  <updated>2020-05-26T08:10:45.444Z</updated>
+  <updated>2020-05-29T05:45:19.535Z</updated>
   <id>https://null6.cn/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>卸载Winddows预装Office365套件</title>
+    <link href="https://null6.cn/2020/05/29/uninstall-office365/"/>
+    <id>https://null6.cn/2020/05/29/uninstall-office365/</id>
+    <published>2020-05-29T05:30:44.000Z</published>
+    <updated>2020-05-29T05:45:19.535Z</updated>
+    
+    <content type="html"><![CDATA[<p>现在买了电脑以后都会预装office365套件，由于工作需要重装为2010版本，查了网上各种方法费劲脑汁也卸载不了，最后无意间乱点卸载成功了，大家不妨试试。</p><p>尝试过的方法：</p><ul><li>使用官方Office卸载工具：o15-ctrremove.diagcab - 2020年后新买电脑无效，之前可以使用</li><li>百度经验里面的删除office安装目录文件，删除注册表 - 无效</li><li>Office专用卸载工具 - 无效</li><li>各种软件管家卸载 - 根本找不到office</li><li>其他小技巧 - 无效</li></ul><p>以上方法我尝试过无效但有些人能成功卸载，以上方法都尝试过但失败的可以试试我的方法</p><ol><li><p>打开设置 - 程序和功能 - 搜索Office - 点击卸载</p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/05/29/uninstall-office365/1.jpg" alt="打开设置 - 程序和功能 - 搜索Office - 点击卸载"></p></li><li><p>程序和功能 - 搜索那个desktopapp（点开会看到里面就是那帮可恶的office365），然后一键卸载，干干净净！</p></li></ol><p>卸载后就可以安装office2010了，希望能帮到你。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;现在买了电脑以后都会预装office365套件，由于工作需要重装为2010版本，查了网上各种方法费劲脑汁也卸载不了，最后无意间乱点卸载成功了，大家不妨试试。&lt;/p&gt;
+&lt;p&gt;尝试过的方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用官方Office卸载工具：o15-ctrremove.d
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Office" scheme="https://null6.cn/tags/Office/"/>
+    
+      <category term="卸载" scheme="https://null6.cn/tags/%E5%8D%B8%E8%BD%BD/"/>
+    
+  </entry>
   
   <entry>
     <title>博客访问速度优化</title>
