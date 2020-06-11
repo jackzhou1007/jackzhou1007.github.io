@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://null6.cn/"/>
-  <updated>2020-05-29T05:45:19.535Z</updated>
+  <updated>2020-06-11T02:46:29.906Z</updated>
   <id>https://null6.cn/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>极速搭建KMS服务器</title>
+    <link href="https://null6.cn/2020/06/11/install-kms-server/"/>
+    <id>https://null6.cn/2020/06/11/install-kms-server/</id>
+    <published>2020-06-11T02:00:00.000Z</published>
+    <updated>2020-06-11T02:46:29.906Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>声明：本次实验目的只限于学习技术，实验完成后立即删除，不可用于商业用途，请支持微软正版。</p></blockquote><p>搭建工具：</p><ul><li>vm虚拟机一台：1核16M内存即可</li></ul><p>需要用时：3分钟，按照文中操作100%可用</p><ol><li><p>首先下载kms服务器源文件：<a href="https://github.com/kkkgo/vlmcsd/archive/1113.zip" target="_blank" rel="noopener">https://github.com/kkkgo/vlmcsd/archive/1113.zip</a></p></li><li><p>使用虚拟机导入镜像文件</p><p>打开虚拟机-导入-选择floppy文件夹下的vlmcsd embedded.vmx文件</p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/06/11/install-kms-server/1.jpg" alt></p></li><li><p>开启虚拟机</p><p>导入完成后开启虚拟机电源</p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/06/11/install-kms-server/2.jpg" alt></p></li><li><p>设置ip地址</p><p>开启电源的前5秒钟按m键设置ip、网关等配置信息，配置完成就可以了</p><p><img src= data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs= data-src="/2020/06/11/install-kms-server/3.jpg" alt></p></li><li><p>搭建完成，使用脚本激活即可</p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;声明：本次实验目的只限于学习技术，实验完成后立即删除，不可用于商业用途，请支持微软正版。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;搭建工具：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;vm虚拟机一台：1核16M内存即可&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;需要用时：3分
+      
+    
+    </summary>
+    
+    
+    
+      <category term="KMS" scheme="https://null6.cn/tags/KMS/"/>
+    
+  </entry>
   
   <entry>
     <title>卸载Winddows预装Office365套件</title>
