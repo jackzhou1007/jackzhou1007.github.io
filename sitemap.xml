@@ -4,92 +4,257 @@
   <url>
     <loc>https://null6.cn/2020/06/11/install-kms-server/</loc>
     
-    <lastmod>2020-06-11T02:46:29.906Z</lastmod>
+    <lastmod>2020-06-11</lastmod>
     
   </url>
   
   <url>
     <loc>https://null6.cn/2020/05/29/uninstall-office365/</loc>
     
-    <lastmod>2020-05-29T05:45:19.535Z</lastmod>
+    <lastmod>2020-05-29</lastmod>
     
   </url>
   
   <url>
     <loc>https://null6.cn/about/index.html</loc>
     
-    <lastmod>2020-05-29T00:47:17.399Z</lastmod>
+    <lastmod>2020-05-29</lastmod>
     
   </url>
   
   <url>
     <loc>https://null6.cn/2020/05/26/blog-network-speedup/</loc>
     
-    <lastmod>2020-05-26T08:10:45.444Z</lastmod>
+    <lastmod>2020-05-26</lastmod>
     
   </url>
   
   <url>
     <loc>https://null6.cn/2020/05/26/FreeFileSync-tool/</loc>
     
-    <lastmod>2020-05-26T04:07:07.717Z</lastmod>
+    <lastmod>2020-05-26</lastmod>
     
   </url>
   
   <url>
     <loc>https://null6.cn/2020/05/22/Windows-Server-backup-share/</loc>
     
-    <lastmod>2020-05-21T06:54:41.060Z</lastmod>
+    <lastmod>2020-05-21</lastmod>
     
   </url>
   
   <url>
     <loc>https://null6.cn/2020/05/21/zabbix5-quick-install/</loc>
     
-    <lastmod>2020-05-21T05:12:23.038Z</lastmod>
+    <lastmod>2020-05-21</lastmod>
     
   </url>
   
   <url>
     <loc>https://null6.cn/2020/05/14/Centos7-Zabbix5-install/</loc>
     
-    <lastmod>2020-05-15T08:15:45.302Z</lastmod>
+    <lastmod>2020-05-15</lastmod>
     
   </url>
   
   <url>
     <loc>https://null6.cn/2020/04/30/IBM-GMP-Install/</loc>
     
-    <lastmod>2020-05-15T08:11:54.202Z</lastmod>
+    <lastmod>2020-05-15</lastmod>
     
   </url>
   
   <url>
     <loc>https://null6.cn/2020/05/15/hexo4-2-hexo-asset-image-bugfix/</loc>
     
-    <lastmod>2020-05-15T07:45:28.590Z</lastmod>
+    <lastmod>2020-05-15</lastmod>
     
   </url>
   
   <url>
     <loc>https://null6.cn/2020/04/27/Windows-security-enhancements/</loc>
     
-    <lastmod>2020-05-09T02:25:22.841Z</lastmod>
+    <lastmod>2020-05-09</lastmod>
     
   </url>
   
   <url>
     <loc>https://null6.cn/categories/index.html</loc>
     
-    <lastmod>2020-04-30T02:10:13.630Z</lastmod>
+    <lastmod>2020-04-30</lastmod>
     
   </url>
   
   <url>
     <loc>https://null6.cn/tags/index.html</loc>
     
-    <lastmod>2020-04-30T02:08:24.116Z</lastmod>
+    <lastmod>2020-04-30</lastmod>
     
+  </url>
+  
+
+  <url>
+    <loc>https://null6.cn/</loc>
+    <lastmod>2020-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  
+  <url>
+    <loc>https://null6.cn/tags/Centos/</loc>
+    <lastmod>2020-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://null6.cn/tags/Zabbix/</loc>
+    <lastmod>2020-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://null6.cn/tags/%E5%AE%89%E8%A3%85/</loc>
+    <lastmod>2020-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://null6.cn/tags/%E5%85%8D%E8%B4%B9/</loc>
+    <lastmod>2020-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://null6.cn/tags/%E5%90%8C%E6%AD%A5/</loc>
+    <lastmod>2020-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://null6.cn/tags/FreeFileSync/</loc>
+    <lastmod>2020-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://null6.cn/tags/%E5%BD%A9%E8%9D%B6/</loc>
+    <lastmod>2020-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://null6.cn/tags/IBM/</loc>
+    <lastmod>2020-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://null6.cn/tags/GMP/</loc>
+    <lastmod>2020-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://null6.cn/tags/Windows/</loc>
+    <lastmod>2020-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://null6.cn/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+    <lastmod>2020-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://null6.cn/tags/%E5%A4%87%E4%BB%BD/</loc>
+    <lastmod>2020-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://null6.cn/tags/%E5%85%B1%E4%BA%AB/</loc>
+    <lastmod>2020-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://null6.cn/tags/%E5%AE%89%E5%85%A8/</loc>
+    <lastmod>2020-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://null6.cn/tags/CDN/</loc>
+    <lastmod>2020-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://null6.cn/tags/%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96/</loc>
+    <lastmod>2020-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://null6.cn/tags/Hexo/</loc>
+    <lastmod>2020-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://null6.cn/tags/hexo-asset-image/</loc>
+    <lastmod>2020-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://null6.cn/tags/KMS/</loc>
+    <lastmod>2020-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://null6.cn/tags/Office/</loc>
+    <lastmod>2020-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://null6.cn/tags/%E5%8D%B8%E8%BD%BD/</loc>
+    <lastmod>2020-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+
+  
+  <url>
+    <loc>https://null6.cn/categories/Zabbix/</loc>
+    <lastmod>2020-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
   </url>
   
 </urlset>
