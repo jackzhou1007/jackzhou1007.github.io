@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Hexo使用ftp方式同步静态文件到虚拟主机过程中, committing部分卡住</title>
+      <link href="/2020/09/11/hexo-ftp-committing-bug/"/>
+      <url>/2020/09/11/hexo-ftp-committing-bug/</url>
+      
+        <content type="html"><![CDATA[<p>使用ftp方式同步静态文件到虚拟主机过程中, committing部分卡住<br>可以参见原文查看办法和分析Hexo ftpsync错误分析我就提供下最方便的懒人直接操作了</p><p>其中有解决办法, 需要修改依赖中的代码, 本地调没事儿, 但是要是不在本地还得在改一次, 我就fork了一下源码, 重新从自己仓库里拉改过的版本就完事儿了.</p><p>可以将原本 package.json 中的hexo-deployer-ftpsync版本号, 改成这个仓库, 或者你可以自己改了走你自己仓库, whatever</p><p>fix committing stroked<br>reason in here <a href="https://codeplot.top/2019/05/12/Hexo-ftpsync错误分析/">Hexo-ftpsync错误分析</a><br>easy way in here <a href="https://www.easyulife.com/2019/07/18/Hexo-ftpsync错误分析-修复/">Hexo-ftpsync错误分析&amp;修复</a></p><p>change your package.json file </p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;dependencies&quot;: &#123;</span><br><span class="line">    ...</span><br><span class="line">   &quot;hexo-deployer-ftpsync&quot;: &quot;git+ssh://git@github.com:ChaosTong/hexo-deployer-ftpsync.git&quot;,</span><br><span class="line">   ...</span><br></pre></td></tr></table></figure><p>改完后npm install, 没生效的话, 可以把node_modules文件夹删了, 重新安装一下.</p><p>Deploy your site via FTP.</p><h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-ftpsync --save</span><br></pre></td></tr></table></figure><h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><p>See <a href="https://hexo.io/zh-cn/docs/one-command-deployment#FTPSync">https://hexo.io/zh-cn/docs/one-command-deployment#FTPSync</a></p><h2 id="Warning"><a href="#Warning" class="headerlink" title="Warning"></a>Warning</h2><p>This application will delete files and directories on the remote server to match the local machine. Use this application in production at your own risk.</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>极速搭建KMS服务器</title>
       <link href="/2020/06/11/install-kms-server/"/>
       <url>/2020/06/11/install-kms-server/</url>
