@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300italic,400,400italic,700,700italic%7CConsolas:300,300italic,400,400italic,700,700italic%7CMonaco:300,300italic,400,400italic,700,700italic%7C"Andale+Mono":300,300italic,400,400italic,700,700italic%7C"Ubuntu+Mono":300,300italic,400,400italic,700,700italic%7Cmonospace;:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"null7.cn","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.19.2","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="一、序：IP地址和子网划分学习笔记开篇在我们的日常生活中，每个人的名字对应一个唯一的身份证号，在Internet上也是一样，每台主机(Host)，包括所有的具有上网功能的电子设备都有IP地址，有了IP地址，这些电子设备联网之后，才能正常通信。 要了解和熟练掌握IP地址和子网的划分，首先必须要对进制数计数有一定的认识，本篇为预备知识：掌握十进制、二进制、十六进制、八进制以及它们之间的关系和互相转换。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IP地址和子网划分学习笔记之《预备知识：进制计数》">
+<meta property="og:url" content="https://null7.cn/2022/IP%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/index.html">
+<meta property="og:site_name" content="Null7">
+<meta property="og:description" content="一、序：IP地址和子网划分学习笔记开篇在我们的日常生活中，每个人的名字对应一个唯一的身份证号，在Internet上也是一样，每台主机(Host)，包括所有的具有上网功能的电子设备都有IP地址，有了IP地址，这些电子设备联网之后，才能正常通信。 要了解和熟练掌握IP地址和子网的划分，首先必须要对进制数计数有一定的认识，本篇为预备知识：掌握十进制、二进制、十六进制、八进制以及它们之间的关系和互相转换。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://null7.cn/2022/IP%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/1.png">
+<meta property="og:image" content="https://null7.cn/2022/IP%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/2.png">
+<meta property="og:image" content="https://null7.cn/2022/IP%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/3.png">
+<meta property="og:image" content="https://null7.cn/2022/IP%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/4.png">
+<meta property="og:image" content="https://null7.cn/2022/IP%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/5.png">
+<meta property="article:published_time" content="2022-04-17T07:59:31.000Z">
+<meta property="article:modified_time" content="2024-04-18T01:05:40.873Z">
+<meta property="article:author" content="John Chow">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://null7.cn/2022/IP%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/1.png">
+
+
+<link rel="canonical" href="https://null7.cn/2022/IP%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://null7.cn/2022/IP%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/","path":"2022/IP地址和子网划分学习笔记1/","title":"IP地址和子网划分学习笔记之《预备知识：进制计数》"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>IP地址和子网划分学习笔记之《预备知识：进制计数》 | Null7</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Null7</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-首页"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-分类"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-归档"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%BA%8F%EF%BC%9AIP%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%BC%80%E7%AF%87"><span class="nav-number">1.</span> <span class="nav-text">一、序：IP地址和子网划分学习笔记开篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E8%BF%9B%E5%88%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB%E5%92%8C%E8%BD%AC%E6%8D%A2"><span class="nav-number">2.</span> <span class="nav-text">二、计算机中进制之间的关系和转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84%E8%BF%9B%E5%88%B6"><span class="nav-number">2.1.</span> <span class="nav-text">1、计算机中常见的进制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E5%8D%81%E8%BF%9B%E5%88%B6%E3%80%81%E4%BA%8C%E8%BF%9B%E5%88%B6%E3%80%81%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E3%80%81%E5%85%AB%E8%BF%9B%E5%88%B6%E4%B9%8B%E9%97%B4%E5%AF%B9%E7%85%A7%E8%A1%A8"><span class="nav-number">2.1.1.</span> <span class="nav-text">2、十进制、二进制、十六进制、八进制之间对照表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81%E4%BA%8C%E8%BF%9B%E5%88%B6%E3%80%81%E5%85%AB%E8%BF%9B%E5%88%B6%E3%80%81%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E6%95%B0%E8%BD%AC%E6%8D%A2%E6%88%90%E5%8D%81%E8%BF%9B%E5%88%B6"><span class="nav-number">2.1.2.</span> <span class="nav-text">3、二进制、八进制、十六进制数转换成十进制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4%E3%80%81%E5%8D%81%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2%E6%88%90%E4%BA%8C%E8%BF%9B%E5%88%B6%E3%80%81%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E3%80%81%E5%85%AB%E8%BF%9B%E5%88%B6"><span class="nav-number">2.1.3.</span> <span class="nav-text">4、十进制转换成二进制、十六进制、八进制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5%E3%80%81%E8%BF%9B%E5%88%B6%E4%B9%8B%E9%97%B4%E8%BD%AC%E6%8D%A2%E5%B0%8F%E6%8A%80%E5%B7%A7"><span class="nav-number">2.1.4.</span> <span class="nav-text">5、进制之间转换小技巧</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Chow</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://null7.cn/2022/IP%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Chow">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Null7">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="IP地址和子网划分学习笔记之《预备知识：进制计数》 | Null7">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          IP地址和子网划分学习笔记之《预备知识：进制计数》
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-17 15:59:31" itemprop="dateCreated datePublished" datetime="2022-04-17T15:59:31+08:00">2022-04-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E5%B8%88/" itemprop="url" rel="index"><span itemprop="name">网络工程师</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="一、序：IP地址和子网划分学习笔记开篇"><a href="#一、序：IP地址和子网划分学习笔记开篇" class="headerlink" title="一、序：IP地址和子网划分学习笔记开篇"></a>一、序：IP地址和子网划分学习笔记开篇</h2><p>在我们的日常生活中，每个人的名字对应一个唯一的身份证号，在Internet上也是一样，每台主机(Host)，包括所有的具有上网功能的电子设备都有IP地址，有了IP地址，这些电子设备联网之后，才能正常通信。</p>
+<p>要了解和熟练掌握IP地址和子网的划分，首先必须要对进制数计数有一定的认识，本篇为预备知识：掌握十进制、二进制、十六进制、八进制以及它们之间的关系和互相转换。</p>
+<span id="more"></span>
+
+<blockquote>
+<p><strong>IP地址和子网划分学习笔记相关篇章：</strong></p>
+<p><a href="/2022/IP%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01"><strong>1、IP地址和子网划分学习笔记之《预备知识：进制计数》</strong></a></p>
+<p><strong><a href="/2022/IP%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02">2、IP地址和子网划分学习笔记之《IP地址详解》</a></strong></p>
+<p><strong><a href="/2022/IP%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B03">3、IP地址和子网划分学习笔记之《子网掩码详解》</a></strong></p>
+<p><strong><a href="/2022/IP%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B04">4、IP地址和子网划分学习笔记之《子网划分详解》</a></strong></p>
+<p><strong><a href="/2022/IP%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B05">5、IP地址和子网划分学习笔记之《超网合并详解》</a></strong></p>
+</blockquote>
+<h2 id="二、计算机中进制之间的关系和转换"><a href="#二、计算机中进制之间的关系和转换" class="headerlink" title="二、计算机中进制之间的关系和转换"></a>二、计算机中进制之间的关系和转换</h2><h3 id="1、计算机中常见的进制"><a href="#1、计算机中常见的进制" class="headerlink" title="1、计算机中常见的进制"></a>1、计算机中常见的进制</h3><p>我们的日常生活中常见的十进制，计算机的运行计算基础就是基于二进制来运行，可以简单的理解为：1代表通电（开），0代表断电（关），只是用二进制执行运算，用其他进制表现出来。十六进制常见于内存地址，注册表regedit，MAC地址等。 而计算机中八进制比较少见不常用，一般用于某些编程语言。</p>
+<p>计算机本身使用的就是二进制，但是使用起来很不方便的，十六进制或八进制可以很好的解决这个问题（换算的时候1位十六进制数可以用4位二进制数代替，1位八进制数可以用3位二进制数代替）。因为进制越大，数的表达长度也就越短，例如：二进制数111111111111用十六进制表示为FFF，这样更简短，比较节省空间，方便读，也方便记。</p>
+<p><img src="/2022/IP%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/1.png"></p>
+<h4 id="2、十进制、二进制、十六进制、八进制之间对照表"><a href="#2、十进制、二进制、十六进制、八进制之间对照表" class="headerlink" title="2、十进制、二进制、十六进制、八进制之间对照表"></a>2、十进制、二进制、十六进制、八进制之间对照表</h4><p><img src="/2022/IP%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/2.png"></p>
+<h4 id="3、二进制、八进制、十六进制数转换成十进制"><a href="#3、二进制、八进制、十六进制数转换成十进制" class="headerlink" title="3、二进制、八进制、十六进制数转换成十进制"></a>3、二进制、八进制、十六进制数转换成十进制</h4><p>十进制可以有多位组成，根据十进制的运算规则：逢10进1，借1当10，从右向左依次为个位、十位、百位、千位、万位…<br>（1024）10 &#x3D; 1×103+0×102+2×101+4×100<br>&#x3D; 1000+0+20+4<br>&#x3D;（1024）10</p>
+<p>由此类似，那么二进制的运算规则：逢2进1，借1当2，也可以由多位数组成，从右向左分别为1位、2位、4位、8位、16位…</p>
+<p><img src="/2022/IP%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/3.png"></p>
+<p>为什么称二进制的位数为1位、2位、4位…?<br>这其实要从十进制的角度看二进制各位数得出的名称，如下表：</p>
+<p><img src="/2022/IP%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/4.png"></p>
+<p>从上表可以看出，当二进制产生进位时，代表的十进制数为2、4、8、16、32、64、128…<br>二进制虽然只有0和1两个数字，但是由于数字所处的位置不同，表示的数据也不同<br>例如：<br>二进制数 “1101”这个二进制数共有4位，由3个1和1个0组成，比如数字1所处位置不同，所代表的大小也不同，其所处位置称作权。从右向左顺序各个位表示十进制的含义：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">第一个1表示：1的个数</span><br><span class="line">第二个0表示：2的个数</span><br><span class="line">第三个1表示：4的个数</span><br><span class="line">第四个1表示：8的个数</span><br></pre></td></tr></table></figure>
+
+<p>(在此可以类比十进制1101，由1个1000，1个100，0个10，1个1组成。)<br>所以，二进制数1101由1个8，1个4，0个2，1个1组成。按各位的权列出：<br>（1101）2 &#x3D; 1×23+1×22+0×21+1×20<br>&#x3D; 8+4+0+1<br>&#x3D;（13）10</p>
+<p>这种权展开式可以很方便将二进制转换为十进制。<br>同理，将八进制数1024转换为十进制数<br>（1024）8 &#x3D; 1×83+0×82+2×81+4×80<br>&#x3D; 512+0+16+4<br>&#x3D;（532）10</p>
+<p>将十六进制数2B5F转换为十进制数<br>（2B5F）16 &#x3D; 2×163+B×162+5×161+F×160<br>&#x3D; 2×163+11×162+5×161+15×160<br>&#x3D; 8192+2816+80+15<br>&#x3D;（11103）10</p>
+<p>由此我们可以得到一个非十进制数转换为十进制数的自定义公式：<br>（X）Z &#x3D; Xn-1×Z^n-1+ Xn-2×Z^n-2+…+ X1×Z^1+ X0×Z^0<br>&#x3D;（Y）10<br>X表示一个非二进制（多位），Y表示一个十进制数（多位），Z表示各进制的基数，n表示位数。</p>
+<h4 id="4、十进制转换成二进制、十六进制、八进制"><a href="#4、十进制转换成二进制、十六进制、八进制" class="headerlink" title="4、十进制转换成二进制、十六进制、八进制"></a>4、十进制转换成二进制、十六进制、八进制</h4><p>十进制转换成二进制整数就通常采用“除2取余，逆序排列”的方法。具体做法是用2整除十进制整数，可以得到一个商和余数，再用2去除商，又会得到一个商和余数，如此反复，直到商为0停止。再把先得到的余数作为二进制低位有效位，后得到的余数作为二进制高位有效位，依次排列。<br>举个示例：将十进制“11”转换为二进制</p>
+<p><img src="/2022/IP%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/5.png"></p>
+<p>将十进制11转换为二进制数为1011，表示为：（11）10 &#x3D;（1011）2</p>
+<p>同样的，十进制转换为十六进制，采用“除16取余，逆序排列”的方法，十进制转换为八进制采用“除8取余，逆序排列”的方法。</p>
+<h4 id="5、进制之间转换小技巧"><a href="#5、进制之间转换小技巧" class="headerlink" title="5、进制之间转换小技巧"></a>5、进制之间转换小技巧</h4><blockquote>
+<p>1位十六进制等于4位二进制<br>1位八进制等于3位二进制</p>
+</blockquote>
+<p>由于十六进制和八进制的基数问题（太大或不太好算），它们的“幂次方”和“除基数取余”计算起来比较麻烦，为了方便计算，通常建议先把它们转换位二进制后再继续转换为相应的进制。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/%E5%B8%B8%E7%94%A8Git%E5%91%BD%E4%BB%A4%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/" rel="prev" title="常用Git命令参考手册">
+                  <i class="fa fa-angle-left"></i> 常用Git命令参考手册
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/IP%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02/" rel="next" title="IP地址和子网划分学习笔记之《IP地址详解》">
+                  IP地址和子网划分学习笔记之《IP地址详解》 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa-regular fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Null7.cn</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
